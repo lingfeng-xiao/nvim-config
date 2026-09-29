@@ -1,0 +1,23 @@
+{
+  "name": "vim-first-cheatsheet",
+  "displayName": "Vim First Cheatsheet",
+  "description": "Open the shared Neovim/Cursor keymap cheatsheet from Which Key.",
+  "version": "0.1.0",
+  "publisher": "lingfeng-local",
+  "engines": {"vscode": "^1.85.0"},
+  "categories": ["Keymaps"],
+  "main": "./extension.js",
+  "activationEvents": ["onCommand:vimFirst.showCheatsheet"],
+  "contributes": {
+    "commands": [{"command": "vimFirst.showCheatsheet", "title": "Vim First: Show Cheatsheet"}],
+    "configuration": {
+      "title": "Vim First",
+      "properties": {
+        "vimFirst.cheatsheetPath": {
+          "type": "string",
+          "description": "Absolute path of the generated shared Vim-first cheatsheet."
+        }
+      }
+    }
+  }
+}

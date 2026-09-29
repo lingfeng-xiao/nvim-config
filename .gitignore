@@ -1,0 +1,4 @@
+lazy-lock.json
+cursor/*.vsix
+__pycache__/
+*.pyc

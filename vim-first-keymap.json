@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "source": "lingfeng-xiao/nvim-config NvChad habits plus the user's Cursor Vim-first requirements",
+  "leader": "<Space>",
+  "bindings": [
+    {"keys": "gd", "label": "Go to Definition", "group": "LSP", "nvim": "vim.lsp.buf.definition", "cursor": "editor.action.revealDefinition"},
+    {"keys": "gD", "label": "Go to Declaration", "group": "LSP", "nvim": "vim.lsp.buf.declaration", "cursor": "editor.action.revealDeclaration"},
+    {"keys": "gr", "label": "Find References", "group": "LSP", "nvim": "vim.lsp.buf.references", "cursor": "editor.action.goToReferences"},
+    {"keys": "gi", "label": "Go to Implementation", "group": "LSP", "nvim": "vim.lsp.buf.implementation", "cursor": "editor.action.goToImplementation"},
+    {"keys": "K", "label": "Hover Documentation", "group": "LSP", "nvim": "vim.lsp.buf.hover", "cursor": "editor.action.showHover"},
+    {"keys": "[d", "label": "Previous Diagnostic", "group": "Diagnostics", "nvim": "vim.diagnostic.jump-prev", "cursor": "editor.action.marker.prev"},
+    {"keys": "]d", "label": "Next Diagnostic", "group": "Diagnostics", "nvim": "vim.diagnostic.jump-next", "cursor": "editor.action.marker.next"},
+    {"keys": "<leader>ca", "label": "Code Action", "group": "Code", "nvim": "vim.lsp.buf.code_action", "cursor": "editor.action.quickFix", "visual": true},
+    {"keys": "<leader>rn", "label": "Rename Symbol", "group": "Rename", "nvim": "vim.lsp.buf.rename", "cursor": "editor.action.rename"},
+    {"keys": "<leader>ff", "label": "Find File", "group": "Files", "nvim": "Telescope find_files", "cursor": "workbench.action.quickOpen"},
+    {"keys": "<leader>fg", "label": "Workspace Grep", "group": "Files", "nvim": "Telescope live_grep", "cursor": "workbench.action.findInFiles"},
+    {"keys": "<leader>fb", "label": "Open Buffer", "group": "Files", "nvim": "Telescope buffers", "cursor": "workbench.action.showAllEditors"},
+    {"keys": "<leader>e", "label": "Explorer / Editor", "group": "Explorer", "nvim": "vim-first.explorer-toggle-focus", "cursor": "workbench.view.explorer"},
+    {"keys": "<leader>bd", "label": "Close Buffer", "group": "Buffers", "nvim": "bdelete", "cursor": "workbench.action.closeActiveEditor"},
+    {"keys": "<leader>tt", "label": "Toggle Terminal", "group": "Terminal", "nvim": "vim-first.terminal-toggle", "cursor": "workbench.action.terminal.toggleTerminal"},
+    {"keys": "<leader>ch", "label": "Cheatsheet", "group": "Help", "nvim": "vim-first.cheatsheet", "cursor": "vim-first.cheatsheet-preview"},
+    {"keys": "<leader>aa", "label": "Focus Agent", "group": "AI", "nvim": null, "cursor": "composer.focusComposer"},
+    {"keys": "<leader>ai", "label": "Inline Edit", "group": "AI", "nvim": null, "cursor": "aipopup.action.modal.generate", "visual": true},
+    {"keys": "<leader>an", "label": "New Chat", "group": "AI", "nvim": null, "cursor": "composer.createNewComposerTab"},
+    {"keys": "<leader>ap", "label": "Plan Mode", "group": "AI", "nvim": null, "cursor": "composerMode.plan"},
+    {"keys": "<leader>ac", "label": "Add to Current Chat", "group": "AI", "nvim": null, "cursor": "aichat.newfollowupaction", "visual": true},
+    {"keys": "<leader>ar", "label": "Review Inline Changes", "group": "AI", "nvim": null, "cursor": "editor.action.inlineDiffs.viewAllChanges"}
+  ],
+  "native": ["h j k l", "w b e", "0 ^ $", "f F t T", "%", "/ ? * # n N", "d c y and text objects", "v V Ctrl-v", ".", "macros", "marks", "Ctrl-o Ctrl-i", "Ctrl-w h/j/k/l/v/s/q", "gt gT"],
+  "cursor_only_unbound": ["<leader>as"]
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "key": "ctrl+w",
+    "command": "extension.vim_ctrl+w",
+    "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "extension.vim_ctrl+i",
+    "when": "editorTextFocus && vim.active && vim.use<C-i> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "extension.vim_ctrl+o",
+    "when": "editorTextFocus && vim.active && vim.use<C-o> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+v",
+    "command": "extension.vim_ctrl+v",
+    "when": "editorTextFocus && vim.active && vim.use<C-v> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "extension.vim_ctrl+k",
+    "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "extension.vim_navigateCtrlL",
+    "when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl"
+  },
+  {
+    "key": "h",
+    "command": "list.collapse",
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  },
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  },
+  {
+    "key": "l",
+    "command": "list.expand",
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+alt+e",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "!editorTextFocus"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "space",
+    "command": "whichkey.show",
+    "args": [
+      {
+        "key": "c",
+        "name": "+Code",
+        "type": "bindings",
+        "bindings": [
+          {
+            "key": "a",
+            "name": "Code Action",
+            "type": "command",
+            "command": "editor.action.quickFix"
+          },
+          {
+            "key": "h",
+            "name": "Cheatsheet",
+            "type": "command",
+            "command": "vimFirst.showCheatsheet"
+          }
+        ]
+      },
+      {
+        "key": "r",
+        "name": "+Rename",
+        "type": "bindings",
+        "bindings": [
+          {
+            "key": "n",
+            "name": "Rename Symbol",
+            "type": "command",
+            "command": "editor.action.rename"
+          }
+        ]
+      },
+      {
+        "key": "f",
+        "name": "+Files",
+        "type": "bindings",
+        "bindings": [
+          {
+            "key": "f",
+            "name": "Find File",
+            "type": "command",
+            "command": "workbench.action.quickOpen"
+          },
+          {
+            "key": "g",
+            "name": "Workspace Grep",
+            "type": "command",
+            "command": "workbench.action.findInFiles"
+          },
+          {
+            "key": "b",
+            "name": "Open Buffer",
+            "type": "command",
+            "command": "workbench.action.showAllEditors"
+          }
+        ]
+      },
+      {
+        "key": "e",
+        "name": "Return to Editor",
+        "type": "command",
+        "command": "workbench.action.focusActiveEditorGroup"
+      },
+      {
+        "key": "b",
+        "name": "+Buffers",
+        "type": "bindings",
+        "bindings": [
+          {
+            "key": "d",
+            "name": "Close Buffer",
+            "type": "command",
+            "command": "workbench.action.closeActiveEditor"
+          }
+        ]
+      },
+      {
+        "key": "t",
+        "name": "+Terminal",
+        "type": "bindings",
+        "bindings": [
+          {
+            "key": "t",
+            "name": "Toggle Terminal",
+            "type": "command",
+            "command": "workbench.action.terminal.toggleTerminal"
+          }
+        ]
+      },
+      {
+        "key": "a",
+        "name": "+AI",
+        "type": "bindings",
+        "bindings": [
+          {
+            "key": "a",
+            "name": "Focus Agent",
+            "type": "command",
+            "command": "composer.focusComposer"
+          },
+          {
+            "key": "i",
+            "name": "Inline Edit",
+            "type": "command",
+            "command": "aipopup.action.modal.generate"
+          },
+          {
+            "key": "n",
+            "name": "New Chat",
+            "type": "command",
+            "command": "composer.createNewComposerTab"
+          },
+          {
+            "key": "p",
+            "name": "Plan Mode",
+            "type": "command",
+            "command": "composerMode.plan"
+          },
+          {
+            "key": "c",
+            "name": "Add to Context",
+            "type": "command",
+            "command": "aichat.newchataction"
+          },
+          {
+            "key": "r",
+            "name": "Review Inline Changes",
+            "type": "command",
+            "command": "editor.action.inlineDiffs.viewAllChanges"
+          }
+        ]
+      },
+      {
+        "key": "?",
+        "name": "Search shortcuts",
+        "type": "command",
+        "command": "whichkey.searchBindings"
+      }
+    ],
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  },
+  {
+    "key": "escape",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  },
+  {
+    "key": "q",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+w l",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "filesExplorerFocus && listFocus && !inputFocus"
+  }
+]
