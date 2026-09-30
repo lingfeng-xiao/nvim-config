@@ -71,6 +71,8 @@ settings.update({
     "vimFirst.cheatsheetPath": str(guide_path),
 })
 managed = read_json(root / "cursor/keybindings.managed.json", [])
+if "workbench.action.focusActiveEditorGroup" not in source:
+    raise SystemExit("Editor focus command is not present in this Cursor build")
 for binding in spec["bindings"]:
     if binding.get("cursor_binding") == "normal-and-explorer":
         key = "ctrl+" + binding["keys"][3].lower()

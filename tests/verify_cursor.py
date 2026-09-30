@@ -34,7 +34,10 @@ for direction, command in zip("hjkl", ("navigateLeft", "navigateDown", "navigate
     assert len(matches) == 2, (direction, matches)
     assert any("vim.mode == 'Normal'" in item["when"] and "editorTextFocus" in item["when"] for item in matches)
     assert any("filesExplorerFocus" in item["when"] and "!inputFocus" in item["when"] for item in matches)
-assert any(item["key"] == "ctrl+alt+e" and item["when"] == "!editorTextFocus" for item in keys)
+editor_return = [item for item in keys if item.get("key") == "ctrl+alt+e"]
+assert len(editor_return) == 1
+assert editor_return[0]["command"] == "workbench.action.focusActiveEditorGroup"
+assert "when" not in editor_return[0], "Editor return must also work inside Agent input"
 
 manifest_leader = {binding["keys"][len("<leader>"):] for binding in spec["bindings"]
                    if binding["keys"].startswith("<leader>") and not binding.get("visual_only")}

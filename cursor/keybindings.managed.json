@@ -9,7 +9,7 @@
   {"key": "j", "command": "list.focusDown", "when": "filesExplorerFocus && listFocus && !inputFocus"},
   {"key": "k", "command": "list.focusUp", "when": "filesExplorerFocus && listFocus && !inputFocus"},
   {"key": "l", "command": "list.expand", "when": "filesExplorerFocus && listFocus && !inputFocus"},
-  {"key": "ctrl+alt+e", "command": "workbench.action.focusActiveEditorGroup", "when": "!editorTextFocus"},
+  {"key": "ctrl+alt+e", "command": "workbench.action.focusActiveEditorGroup"},
   {"key": "ctrl+`", "command": "workbench.action.terminal.toggleTerminal", "when": "terminalFocus"},
   {"key": "space", "command": "whichkey.show", "when": "filesExplorerFocus && listFocus && !inputFocus"},
   {"key": "escape", "command": "workbench.action.focusActiveEditorGroup", "when": "filesExplorerFocus && listFocus && !inputFocus"},
