@@ -6,11 +6,11 @@ This is the personal NvChad v2.5 configuration and its Cursor counterpart. Both 
 
 1. Install Neovim 0.12+, Git, Python 3.9+, Cursor, and the Cursor extensions `vscodevim.vim` and `vspacecode.whichkey`.
 2. Clone this repository to `%LOCALAPPDATA%\nvim`. The repository bootstraps NvChad v2.5 on first Neovim launch.
-3. Run `python cursor\package_cheatsheet_extension.py`, then `cursor --install-extension cursor\vim-first-cheatsheet-0.1.0.vsix` from the repository root.
+3. Run `python cursor\package_cheatsheet_extension.py`, then `cursor --install-extension cursor\vim-first-cheatsheet-0.1.1.vsix` from the repository root.
 4. Run `python cursor\install_windows.py` from the repository root. It backs up the existing Cursor User files under `%APPDATA%\Cursor\User\vim-first-backups`, updates only Vim/Which Key settings, merges the keyboard navigation bindings, and generates a local cheatsheet path. Java/JDK, theme, font, proxy, Maven, and Gradle settings are left in place.
 5. Reload Cursor. Open a file in Normal mode and press `Space` for Which Key or `Space ch` for the complete sheet.
 
-Neovim loads Which Key with its modern popup and shows Leader choices after 120 ms. Cursor shows the Leader menu immediately in Normal mode; Visual mode has a smaller selection-only menu, and Explorer has a menu whose `e` entry returns to the editor. In Cursor, `Space ?` searches available shortcuts. Both editors generate their labels from the same manifest; `Space ch` opens the complete grouped cheatsheet, including native Vim keys and the Cursor-only AI scope.
+Neovim loads Which Key with its modern popup and shows Leader choices after 120 ms. Cursor shows the Leader menu immediately in Normal mode; Visual mode has a smaller selection-only menu, and Explorer has a menu whose `e` entry returns to the editor. In Cursor, `Space ?` searches available shortcuts. Both editors generate their labels from the same manifest; `Space ch` opens the complete grouped cheatsheet as a regular text editor. Vim motions, `Ctrl+d/u`, `/`, and `Space bd` work there; the Markdown preview Webview is not used.
 
 The installer checks every Cursor command against the installed Cursor workbench before editing. If a future Cursor version removes a command, the installer stops without changing User files. The generated settings, the local cheatsheet path, backups, and packaged VSIX are deliberately not committed.
 

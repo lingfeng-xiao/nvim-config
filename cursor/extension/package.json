@@ -1,8 +1,8 @@
 {
   "name": "vim-first-cheatsheet",
   "displayName": "Vim First Cheatsheet",
-  "description": "Open the shared Neovim/Cursor keymap cheatsheet from Which Key.",
-  "version": "0.1.0",
+  "description": "Open the shared Neovim/Cursor keymap cheatsheet in a Vim-enabled text editor.",
+  "version": "0.1.1",
   "publisher": "lingfeng-local",
   "engines": {"vscode": "^1.85.0"},
   "categories": ["Keymaps"],

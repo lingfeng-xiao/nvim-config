@@ -94,7 +94,7 @@ lines = [
     "# Vim-first · 键位看板", "",
     "**Normal 按 `Space`**：显示 Which Key；在面板中按字母逐层选择，`?` 搜索快捷键。",
     "**Visual 按 `Space`**：只显示适用于选区的操作。**Explorer 按 `Space`**：显示文件树菜单，`e` 返回编辑器。",
-    "**`Space ch`**：打开本看板。Caps 短按 `Esc`，按住等于 `Ctrl`。", "",
+    "**`Space ch`**：在普通编辑器中打开本看板；用 `j/k`、`Ctrl+d/u`、`gg/G`、`/` 浏览，`Space bd` 关闭。Caps 短按 `Esc`，按住等于 `Ctrl`。", "",
     "| 高频入口 | 作用 |", "|---|---|",
     "| `Space e` / `Space ff` / `Space fg` / `Space fb` | Explorer / 文件 / 全局搜索 / 已打开编辑器 |",
     "| `Ctrl+h/j/k/l` / `Space wv/ws` | 方向焦点 / 竖、横分屏 |",

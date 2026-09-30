@@ -11,7 +11,12 @@ function activate(context) {
       return;
     }
     const uri = vscode.Uri.file(configured);
-    await vscode.commands.executeCommand('markdown.showPreview', uri);
+    try {
+      const document = await vscode.workspace.openTextDocument(uri);
+      await vscode.window.showTextDocument(document, { preview: false, preserveFocus: false });
+    } catch (error) {
+      vscode.window.showErrorMessage(`Vim First cheatsheet could not be opened: ${error.message}`);
+    }
   }));
 }
 

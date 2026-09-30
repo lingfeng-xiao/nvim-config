@@ -52,9 +52,12 @@ assert settings["vimFirst.cheatsheetPath"] == str(user / "vim-first-cheatsheet.m
 extensions = sorted((Path.home() / ".cursor" / "extensions").glob("lingfeng-local.vim-first-cheatsheet-*/package.json"))
 assert extensions, "Vim First cheatsheet extension is not installed"
 extension = json.loads(extensions[-1].read_text(encoding="utf-8"))
+assert extension["version"] == "0.1.1"
 assert any(command["command"] == "vimFirst.showCheatsheet" for command in extension["contributes"]["commands"])
 extension_source = (extensions[-1].parent / "extension.js").read_text(encoding="utf-8")
-assert "markdown.showPreview" in extension_source and "vscode.Uri.file" in extension_source
+assert "openTextDocument" in extension_source and "showTextDocument" in extension_source
+assert "markdown.showPreview" not in extension_source
+assert "vscode.Uri.file" in extension_source
 
 if len(sys.argv) > 1:
     backup = Path(sys.argv[1])
