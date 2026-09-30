@@ -27,7 +27,7 @@ for direction, command in zip("hjkl", ("navigateLeft", "navigateDown", "navigate
     assert len(matches) == 2, (direction, matches)
     assert any("vim.mode == 'Normal'" in item["when"] and "editorTextFocus" in item["when"] for item in matches)
     assert any("filesExplorerFocus" in item["when"] and "!inputFocus" in item["when"] for item in matches)
-assert any(item["key"] == "ctrl+alt+e" and item["when"] == "terminalFocus" for item in keys)
+assert any(item["key"] == "ctrl+alt+e" and item["when"] == "!editorTextFocus" for item in keys)
 
 manifest_leader = {binding["keys"][len("<leader>"):] for binding in spec["bindings"]
                    if binding["keys"].startswith("<leader>") and not binding.get("visual_only")}

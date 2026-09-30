@@ -92,7 +92,7 @@ keys = [item for item in keys if (item.get("key"), item.get("when", "")) not in 
 lines = ["# Vim-first · Neovim + Cursor", "", "同一按键定义来自 `vim-first-keymap.json`；Normal 模式按 Space 显示 Which Key。", "", "| 按键 | 语义 | Neovim | Cursor |", "|---|---|---|---|"]
 for b in spec["bindings"]:
     lines.append(f"| `{b['keys'].replace('<leader>', 'Space ')}` | {b['label']} | {'✓' if b['nvim'] else 'Cursor 专属'} | ✓ |")
-lines += ["", "Caps：短按 Esc，按住 Ctrl。Normal / Explorer 中 Ctrl+h/j/k/l 移动空间焦点；Insert、Terminal、AI 输入框不接管。", "原生 Vim：移动、文本对象、查找、宏、marks、jumplist；Neovim 仍保留 Ctrl+w 原生窗口操作。", "", "Explorer：Space e 聚焦，树中 Space e / q / Esc 返回编辑器。", "Terminal：Space t 切换，Ctrl+Alt+E 返回编辑器。", "Space ac 仅在 Visual 选区中加入当前聊天。", "`gt/gT` 保留宿主标签语义：Neovim Tab page、Cursor Editor。", "Space as 暂未绑定；AI 键只适用于 Cursor。"]
+lines += ["", "Caps：短按 Esc，按住 Ctrl。Normal / Explorer 中 Ctrl+h/j/k/l 移动空间焦点；Insert、Terminal、AI 输入框不接管。", "原生 Vim：移动、文本对象、查找、宏、marks、jumplist；Neovim 仍保留 Ctrl+w 原生窗口操作。", "", "Explorer：Space e 聚焦，树中 Space e / q / Esc 返回编辑器。", "Terminal：Space t 切换；Terminal / Agent 等非编辑器区域用 Ctrl+Alt+E 返回编辑器。", "Space ac 仅在 Visual 选区中加入当前聊天。", "`gt/gT` 保留宿主标签语义：Neovim Tab page、Cursor Editor。", "Space as 暂未绑定；AI 键只适用于 Cursor。"]
 backup = user / "vim-first-backups" / datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 if check_only:
     print(json.dumps({"check": "ok", "bindings": len(spec["bindings"]), "managed_keybindings": len(managed), "cursor_user": str(user)}, ensure_ascii=False))

@@ -24,7 +24,7 @@ The installer checks every Cursor command against the installed Cursor workbench
 | Explorer | `Space e` | Focus tree; in the tree `Space e`, `q`, or `Esc` returns to editor |
 | Buffer | `Space bd` | Close the current buffer/editor |
 | Window | `Ctrl+h/j/k/l` in Normal or Explorer; `Space wv/ws` | Move spatial focus; vertical/horizontal split |
-| Terminal | `Space t` | Toggle; `Ctrl+Alt+E` returns to editor |
+| Terminal / Agent return | `Space t`; `Ctrl+Alt+E` | Toggle Terminal; return from any non-editor area to the editor |
 | Help | `Space ch` | Shared cheatsheet; `Space` shows Which Key |
 | Cursor AI | `Space aa/ai/an/ap/ar`; Visual `Space ac` | Agent, inline edit, new chat, plan, review inline changes; add selection to current chat |
 
