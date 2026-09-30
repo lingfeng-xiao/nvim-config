@@ -81,23 +81,6 @@ return {
     opts    = {},
   },
 
-  -- ---- 跳转增强（VSCode 内用 flash.jump，禁用依赖 treesitter 的 S 键）----
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts  = {},
-    keys  = is_vscode and {
-      -- VSCode 内只启用基础跳转，不用 treesitter 模式
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash Jump" },
-    } or {
-      -- 纯 nvim 启用全部模式
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-      { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    },
-  },
-
   -- ---- which-key：注册分组标签（两端都启用，纯文本配置无副作用）----
   {
     "folke/which-key.nvim",

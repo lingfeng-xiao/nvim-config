@@ -23,12 +23,14 @@ The installer checks every Cursor command against the installed Cursor workbench
 | Workspace | `Space ff`, `Space fg`, `Space fb` | Files, workspace grep, open buffers/editors |
 | Explorer | `Space e` | Focus tree; in the tree `Space e`, `q`, or `Esc` returns to editor |
 | Buffer | `Space bd` | Close the current buffer/editor |
-| Window | `Ctrl+w h/j/k/l`, `Ctrl+w v/s/q` | Vim window navigation, split, close |
-| Terminal | `Space tt` | Toggle; `Ctrl+Alt+E` returns to editor |
+| Window | `Ctrl+h/j/k/l` in Normal or Explorer; `Space wv/ws` | Move spatial focus; vertical/horizontal split |
+| Terminal | `Space t` | Toggle; `Ctrl+Alt+E` returns to editor |
 | Help | `Space ch` | Shared cheatsheet; `Space` shows Which Key |
-| Cursor AI | `Space aa/ai/an/ap/ac/ar` | Agent, inline edit, new chat, plan, add selection to current chat, review inline changes |
+| Cursor AI | `Space aa/ai/an/ap/ar`; Visual `Space ac` | Agent, inline edit, new chat, plan, review inline changes; add selection to current chat |
 
-`Space as` is intentionally unbound: no reliable side-chat command was confirmed in Cursor 3.22.12. `gt/gT` remain native: Neovim switches tab pages and VSCodeVim switches editors. This host distinction is preferable to overriding an established Vim operation. AI keys have no Neovim substitute. The Command Palette remains available for low-frequency commands.
+Caps Lock taps `Esc` and holds `Ctrl` at the OS level. The `Ctrl+h/j/k/l` navigation bindings apply to Neovim Normal mode, and to Cursor's Vim Normal editor or non-input Explorer tree only. They leave Insert mode, terminals, and AI input alone. Neovim also retains its native `Ctrl+w` window commands; this is no longer the shared primary window language. NvChad's default keymap is intentionally not loaded because it adds overlapping Leader aliases, delays `Space t`, and maps `<Tab>` over the native `Ctrl+i` jumplist. Flash's `s/S/r/R` overrides have likewise been removed so those native text operations remain available.
+
+`Space as` is intentionally unbound: no reliable side-chat command was confirmed in Cursor 3.22.12. `gt/gT` remain native: Neovim switches tab pages and VSCodeVim switches editors. AI keys have no Neovim substitute. The Command Palette remains available for low-frequency commands.
 
 The Cursor command IDs were checked against the local Cursor 3.22.12 workbench. `[d/]d` use the current-editor marker commands, matching Neovim's buffer-local diagnostic navigation. `Space ac` uses Cursor's follow-up action with selection insertion, while `Space an` creates a new chat. Cursor desktop key presses still need a hands-on check when desktop control is available; the current verification covers configuration consistency and Neovim behavior.
 

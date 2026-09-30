@@ -43,6 +43,13 @@ local function resolve(action)
   if action == 'vim-first.explorer-toggle-focus' then return M.explorer_toggle_focus end
   if action == 'vim-first.terminal-toggle' then return M.terminal_toggle end
   if action == 'vim-first.cheatsheet' then return function() require('configs.cheatsheet').open() end end
+  local direction = action:match('^vim%-first%.window%-(%a+)$')
+  local window_command = { left = 'h', right = 'l', up = 'k', down = 'j' }
+  if window_command[direction] then
+    return function() vim.cmd('wincmd ' .. window_command[direction]) end
+  end
+  if action == 'vim-first.window-vsplit' then return function() vim.cmd('vsplit') end end
+  if action == 'vim-first.window-split' then return function() vim.cmd('split') end end
   if action == 'vim.diagnostic.jump-prev' then return function() vim.diagnostic.jump({ count = -1 }) end end
   if action == 'vim.diagnostic.jump-next' then return function() vim.diagnostic.jump({ count = 1 }) end end
   if action:sub(1, 8) == 'vim.lsp.' then

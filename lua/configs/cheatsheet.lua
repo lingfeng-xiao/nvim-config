@@ -11,7 +11,9 @@ local function lines_from_spec()
     'NATIVE VIM',
     '  hjkl / wbe / 0^$ / fFtT / % / motions and text objects',
     '  / ? * # n N · v V Ctrl-v · . · macros · marks',
-    '  Ctrl-o/i · Ctrl-w h/j/k/l/v/s/q · gt/gT',
+    '  Ctrl-o/i · Neovim native Ctrl-w · gt/gT',
+    '  Caps tap = Esc · Caps hold = Ctrl',
+    '  Normal / tree: Ctrl+h/j/k/l moves focus; Insert / shell keeps its keys',
     '',
   }
   local groups = { 'LSP', 'Diagnostics', 'Code', 'Rename', 'Files', 'Explorer', 'Buffers', 'Terminal', 'Help', 'AI' }
@@ -27,7 +29,8 @@ local function lines_from_spec()
     if added then table.insert(lines, '') end
   end
   table.insert(lines, 'Explorer: Space e focuses tree; inside tree Space e / q / Esc returns.')
-  table.insert(lines, 'Terminal: Space tt toggles; Ctrl+Alt+E returns to editor.')
+  table.insert(lines, 'Terminal: Space t toggles; Ctrl+Alt+E returns to editor.')
+  table.insert(lines, 'AI context: Space ac applies only to a Visual selection in Cursor.')
   table.insert(lines, 'AI: Cursor only. Space as remains unbound.')
   return lines
 end
