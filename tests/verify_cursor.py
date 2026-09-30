@@ -8,17 +8,24 @@ root = Path(__file__).resolve().parents[1]
 user = Path(os.environ["APPDATA"]) / "Cursor" / "User"
 settings = json.loads((user / "settings.json").read_text(encoding="utf-8-sig"))
 keys = json.loads((user / "keybindings.json").read_text(encoding="utf-8-sig"))
+assert isinstance(keys, list) and all(isinstance(item, dict) for item in keys)
 spec = json.loads((root / "vim-first-keymap.json").read_text(encoding="utf-8"))
 
 assert settings["vim.leader"] == "<space>"
 assert settings["whichkey.delay"] == 0
 normal = settings["whichkey.bindings"]
+assert [item["key"] for item in normal] == list("eftwacrb?")
 ai = next(item for item in normal if item["key"] == "a")["bindings"]
 assert "c" not in {item["key"] for item in ai}, "Visual-only AI context leaked to Normal mode"
 visual = settings["vim.visualModeKeyBindingsNonRecursive"][0]["commands"][0]["args"][0]
 visual_ai = next(item for item in visual if item["key"] == "a")["bindings"]
 assert any(item["key"] == "c" and item["command"] == "aichat.newfollowupaction" for item in visual_ai)
 assert any(item["key"] == "t" and item["command"] == "workbench.action.terminal.toggleTerminal" for item in normal)
+help_group = next(item for item in normal if item["key"] == "c")["bindings"]
+assert any(item["key"] == "h" and item["command"] == "vimFirst.showCheatsheet" for item in help_group)
+assert any(item["key"] == "?" and item["command"] == "whichkey.searchBindings" for item in normal)
+explorer = next(item for item in keys if item.get("key") == "space" and item.get("command") == "whichkey.show")
+assert explorer["args"][0]["key"] == "e" and explorer["args"][0]["command"] == "workbench.action.focusActiveEditorGroup"
 assert not any(item["key"] == "ctrl+w l" for item in keys)
 
 for direction, command in zip("hjkl", ("navigateLeft", "navigateDown", "navigateUp", "navigateRight")):
@@ -38,6 +45,16 @@ def flatten(menu, prefix=""):
         elif item["key"] != "?":
             yield prefix + item["key"]
 assert set(flatten(normal)) == manifest_leader
+sheet = (user / "vim-first-cheatsheet.md").read_text(encoding="utf-8")
+for label in ("键位看板", "## 窗口", "Space wv", "Space ws", "## Cursor AI", "仅 Cursor Visual"):
+    assert label in sheet, label
+assert settings["vimFirst.cheatsheetPath"] == str(user / "vim-first-cheatsheet.md")
+extensions = sorted((Path.home() / ".cursor" / "extensions").glob("lingfeng-local.vim-first-cheatsheet-*/package.json"))
+assert extensions, "Vim First cheatsheet extension is not installed"
+extension = json.loads(extensions[-1].read_text(encoding="utf-8"))
+assert any(command["command"] == "vimFirst.showCheatsheet" for command in extension["contributes"]["commands"])
+extension_source = (extensions[-1].parent / "extension.js").read_text(encoding="utf-8")
+assert "markdown.showPreview" in extension_source and "vscode.Uri.file" in extension_source
 
 if len(sys.argv) > 1:
     backup = Path(sys.argv[1])

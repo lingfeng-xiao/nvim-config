@@ -46,7 +46,8 @@ def menu(bindings):
                 items.append(group)
             groups[key[0]]["bindings"].append(entry)
     items.append({"key": "?", "name": "Search shortcuts", "type": "command", "command": "whichkey.searchBindings"})
-    return items
+    order = {key: index for index, key in enumerate("eftwacrb?")}
+    return sorted(items, key=lambda item: order.get(item["key"], len(order)))
 
 
 def sequence(key):
@@ -89,11 +90,39 @@ legacy = {("ctrl+w l", "workbench.action.focusActiveEditorGroup"),
 keys = [item for item in keys if (item.get("key"), item.get("when", "")) not in owned
         and (item.get("key"), item.get("command")) not in legacy] + managed
 
-lines = ["# Vim-first · Neovim + Cursor", "", "同一按键定义来自 `vim-first-keymap.json`；Normal 模式按 Space 显示 Which Key。", "", "| 按键 | 语义 | Neovim | Cursor |", "|---|---|---|---|"]
-for b in spec["bindings"]:
-    lines.append(f"| `{b['keys'].replace('<leader>', 'Space ')}` | {b['label']} | {'✓' if b['nvim'] else 'Cursor 专属'} | ✓ |")
-lines += ["", "Caps：短按 Esc，按住 Ctrl。Normal / Explorer 中 Ctrl+h/j/k/l 移动空间焦点；Insert、Terminal、AI 输入框不接管。", "原生 Vim：移动、文本对象、查找、宏、marks、jumplist；Neovim 仍保留 Ctrl+w 原生窗口操作。", "", "Explorer：Space e 聚焦，树中 Space e / q / Esc 返回编辑器。", "Terminal：Space t 切换；Terminal / Agent 等非编辑器区域用 Ctrl+Alt+E 返回编辑器。", "Space ac 仅在 Visual 选区中加入当前聊天。", "`gt/gT` 保留宿主标签语义：Neovim Tab page、Cursor Editor。", "Space as 暂未绑定；AI 键只适用于 Cursor。"]
+lines = [
+    "# Vim-first · 键位看板", "",
+    "**Normal 按 `Space`**：显示 Which Key；在面板中按字母逐层选择，`?` 搜索快捷键。",
+    "**Visual 按 `Space`**：只显示适用于选区的操作。**Explorer 按 `Space`**：显示文件树菜单，`e` 返回编辑器。",
+    "**`Space ch`**：打开本看板。Caps 短按 `Esc`，按住等于 `Ctrl`。", "",
+    "| 高频入口 | 作用 |", "|---|---|",
+    "| `Space e` / `Space ff` / `Space fg` / `Space fb` | Explorer / 文件 / 全局搜索 / 已打开编辑器 |",
+    "| `Ctrl+h/j/k/l` / `Space wv/ws` | 方向焦点 / 竖、横分屏 |",
+    "| `Space t` / `Space aa` / `Space ai` | Terminal / Agent / Inline Edit |", "",
+]
+group_names = {"LSP": "代码关系", "Diagnostics": "诊断", "Code": "代码修改", "Rename": "重命名",
+               "Files": "文件与搜索", "Explorer": "文件树", "Buffers": "Buffer", "Windows": "窗口",
+               "Terminal": "终端", "Help": "提示", "AI": "Cursor AI"}
+for group, title in group_names.items():
+    bindings = [b for b in spec["bindings"] if b["group"] == group]
+    if not bindings:
+        continue
+    lines += [f"## {title}", "", "| 键位 | 操作 | 范围 |", "|---|---|---|"]
+    for b in bindings:
+        display_keys = b["keys"].replace("<leader>", "Space ").replace("<C-", "Ctrl+").replace(">", "")
+        scope = "仅 Cursor Visual" if b.get("visual_only") else ("仅 Cursor" if b["nvim"] is None else "两端")
+        lines.append(f"| `{display_keys}` | {b['label']} | {scope} |")
+    lines.append("")
+lines += [
+    "## 原生 Vim 与返回", "",
+    "`hjkl`、文本对象、`d/c/y`、`/ ? * # n N`、`.`、宏、marks 和 `Ctrl+o/i` 保留原生语义；Neovim 仍保留原生 `Ctrl+w`。",
+    "`Ctrl+h/j/k/l` 只在 Normal 编辑器和非输入状态 Explorer 中移动焦点；Insert、Terminal、AI 输入框中的 Ctrl 键不被这组映射接管。",
+    "Explorer 中按 `Space e`、`q` 或 `Esc` 返回编辑器；Terminal、Agent 等非编辑器区域按 `Ctrl+Alt+E` 返回。",
+    "`gt/gT` 保留宿主原生行为：Neovim 是 Tab page，Cursor 是 Editor。`Space as` 暂未绑定。",
+]
 backup = user / "vim-first-backups" / datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+if not isinstance(keys, list) or not all(isinstance(item, dict) for item in keys):
+    raise SystemExit("Generated Cursor keybindings must remain an array of objects")
 if check_only:
     print(json.dumps({"check": "ok", "bindings": len(spec["bindings"]), "managed_keybindings": len(managed), "cursor_user": str(user)}, ensure_ascii=False))
     raise SystemExit(0)

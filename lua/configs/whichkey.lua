@@ -1,5 +1,9 @@
 -- The same manifest drives Neovim mappings, Cursor menu entries and the cheatsheet.
 local wk = require('which-key')
+wk.setup({
+  preset = 'modern',
+  delay = 120,
+})
 local path = vim.fn.stdpath('config') .. '/vim-first-keymap.json'
 local spec = vim.json.decode(table.concat(vim.fn.readfile(path), '\n'))
 local registered = {}

@@ -6,7 +6,7 @@ local function lines_from_spec()
   local spec = vim.json.decode(table.concat(vim.fn.readfile(path), '\n'))
   local lines = {
     'VIM FIRST  ·  Neovim + Cursor',
-    'Space = Leader  ·  Space ch = this sheet  ·  Esc / q = close',
+    'Space = Which Key (120 ms)  ·  Space ch = this sheet  ·  Esc / q = close',
     '',
     'NATIVE VIM',
     '  hjkl / wbe / 0^$ / fFtT / % / motions and text objects',
@@ -16,7 +16,7 @@ local function lines_from_spec()
     '  Normal / tree: Ctrl+h/j/k/l moves focus; Insert / shell keeps its keys',
     '',
   }
-  local groups = { 'LSP', 'Diagnostics', 'Code', 'Rename', 'Files', 'Explorer', 'Buffers', 'Terminal', 'Help', 'AI' }
+  local groups = { 'LSP', 'Diagnostics', 'Code', 'Rename', 'Files', 'Explorer', 'Buffers', 'Windows', 'Terminal', 'Help', 'AI' }
   for _, group in ipairs(groups) do
     local added = false
     for _, b in ipairs(spec.bindings) do

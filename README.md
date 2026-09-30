@@ -10,6 +10,8 @@ This is the personal NvChad v2.5 configuration and its Cursor counterpart. Both 
 4. Run `python cursor\install_windows.py` from the repository root. It backs up the existing Cursor User files under `%APPDATA%\Cursor\User\vim-first-backups`, updates only Vim/Which Key settings, merges the keyboard navigation bindings, and generates a local cheatsheet path. Java/JDK, theme, font, proxy, Maven, and Gradle settings are left in place.
 5. Reload Cursor. Open a file in Normal mode and press `Space` for Which Key or `Space ch` for the complete sheet.
 
+Neovim loads Which Key with its modern popup and shows Leader choices after 120 ms. Cursor shows the Leader menu immediately in Normal mode; Visual mode has a smaller selection-only menu, and Explorer has a menu whose `e` entry returns to the editor. In Cursor, `Space ?` searches available shortcuts. Both editors generate their labels from the same manifest; `Space ch` opens the complete grouped cheatsheet, including native Vim keys and the Cursor-only AI scope.
+
 The installer checks every Cursor command against the installed Cursor workbench before editing. If a future Cursor version removes a command, the installer stops without changing User files. The generated settings, the local cheatsheet path, backups, and packaged VSIX are deliberately not committed.
 
 ## Semantic contract
