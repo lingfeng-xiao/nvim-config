@@ -98,9 +98,10 @@ lines = [
     "**Visual 按 `Space`**：只显示适用于选区的操作。**Explorer 按 `Space`**：显示文件树菜单，`e` 返回编辑器。",
     "**`Space ch`**：在普通编辑器中打开本看板；用 `j/k`、`Ctrl+d/u`、`gg/G`、`/` 浏览，`Space bd` 关闭。Caps 短按 `Esc`，按住等于 `Ctrl`。", "",
     "| 高频入口 | 作用 |", "|---|---|",
-    "| `Space e` / `Space ff` / `Space fg` / `Space fb` | Explorer / 文件 / 全局搜索 / 已打开编辑器 |",
+    "| `Space e` / `Space ff` / `Space fg` / `Space fs` / `Space fb` | Explorer / 文件 / 关键词搜索 / 方法或类名 / 已打开编辑器 |",
     "| `Ctrl+h/j/k/l` / `Space wv/ws` | 方向焦点 / 竖、横分屏 |",
     "| `Space t` / `Space aa` / `Space ai` | Terminal / Agent / Inline Edit |", "",
+    "记得关键词或代码片段用 `Space fg`，直接输入、`Enter` 打开、`Esc` 退出；记得方法或类名用 `Space fs`。`fs` 需要对应语言服务；没有语言服务时仍可用 `fg` 搜索方法名文本。", "",
 ]
 group_names = {"LSP": "代码关系", "Diagnostics": "诊断", "Code": "代码修改", "Rename": "重命名",
                "Files": "文件与搜索", "Explorer": "文件树", "Buffers": "Buffer", "Windows": "窗口",

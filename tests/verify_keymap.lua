@@ -15,7 +15,7 @@ local function invoke(lhs)
   error('Missing mapping: ' .. lhs)
 end
 
-for _, lhs in ipairs({ '<C-H>', '<C-J>', '<C-K>', '<C-L>', ' t', ' wv', ' ws', ' ff', ' fg', ' fb', ' e', ' bd' }) do
+for _, lhs in ipairs({ '<C-H>', '<C-J>', '<C-K>', '<C-L>', ' t', ' wv', ' ws', ' ff', ' fg', ' fs', ' fb', ' e', ' bd' }) do
   for _, mapping in ipairs(vim.api.nvim_get_keymap('n')) do
     if mapping.lhs:lower() == lhs:lower() then goto found end
   end

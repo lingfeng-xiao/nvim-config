@@ -22,7 +22,7 @@ The installer checks every Cursor command against the installed Cursor workbench
 | Code relation | `gd`, `gD`, `gr`, `gi`, `K` | Definition, declaration, references, implementation, hover |
 | Diagnostics | `[d`, `]d` | Previous/next diagnostic in the current file |
 | Code editing | `Space ca`, `Space rn` | Code action, rename |
-| Workspace | `Space ff`, `Space fg`, `Space fb` | Files, workspace grep, open buffers/editors |
+| Workspace | `Space ff`, `Space fg`, `Space fs`, `Space fb` | Files, live text search, workspace symbols, open buffers/editors |
 | Explorer | `Space e` | Focus tree; in the tree `Space e`, `q`, or `Esc` returns to editor |
 | Buffer | `Space bd` | Close the current buffer/editor |
 | Window | `Ctrl+h/j/k/l` in Normal or Explorer; `Space wv/ws` | Move spatial focus; vertical/horizontal split |
@@ -37,5 +37,7 @@ Caps Lock taps `Esc` and holds `Ctrl` at the OS level. The `Ctrl+h/j/k/l` naviga
 `Space as` is intentionally unbound: no reliable side-chat command was confirmed in Cursor 3.22.12. `gt/gT` remain native: Neovim switches tab pages and VSCodeVim switches editors. AI keys have no Neovim substitute. The Command Palette remains available for low-frequency commands.
 
 The Cursor command IDs were checked against the local Cursor 3.22.12 workbench. `[d/]d` use the current-editor marker commands, matching Neovim's buffer-local diagnostic navigation. `Space ac` uses Cursor's follow-up action with selection insertion, while `Space an` creates a new chat. Cursor desktop key presses still need a hands-on check when desktop control is available; the current verification covers configuration consistency and Neovim behavior.
+
+When only a keyword or fragment of code is known, use `Space fg`: Cursor opens its live Quick Search picker and Neovim opens Telescope live grep. When a method, class or other symbol name is known, use `Space fs`: both editors ask the language server for workspace symbols in a keyboard-driven picker. `Space fs` requires a language extension/server for the file type; `Space fg` remains useful without one. Both pickers accept typing immediately, `Enter` opens a result, and `Esc` returns to the editor.
 
 The previous repository state is available in Git history at `3017f9007605a9cb0a761b1e39a92563b9f2b158`.

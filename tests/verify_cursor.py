@@ -24,6 +24,13 @@ assert any(item["key"] == "t" and item["command"] == "workbench.action.terminal.
 help_group = next(item for item in normal if item["key"] == "c")["bindings"]
 assert any(item["key"] == "h" and item["command"] == "vimFirst.showCheatsheet" for item in help_group)
 assert any(item["key"] == "?" and item["command"] == "whichkey.searchBindings" for item in normal)
+files = next(item for item in normal if item["key"] == "f")["bindings"]
+assert {item["key"]: item["command"] for item in files} == {
+    "f": "workbench.action.quickOpen",
+    "g": "workbench.action.quickTextSearch",
+    "s": "workbench.action.showAllSymbols",
+    "b": "workbench.action.showAllEditors",
+}
 explorer = next(item for item in keys if item.get("key") == "space" and item.get("command") == "whichkey.show")
 assert explorer["args"][0]["key"] == "e" and explorer["args"][0]["command"] == "workbench.action.focusActiveEditorGroup"
 assert not any(item["key"] == "ctrl+w l" for item in keys)
@@ -49,7 +56,7 @@ def flatten(menu, prefix=""):
             yield prefix + item["key"]
 assert set(flatten(normal)) == manifest_leader
 sheet = (user / "vim-first-cheatsheet.md").read_text(encoding="utf-8")
-for label in ("键位看板", "## 窗口", "Space wv", "Space ws", "## Cursor AI", "仅 Cursor Visual"):
+for label in ("键位看板", "## 窗口", "Space wv", "Space ws", "Space fs", "## Cursor AI", "仅 Cursor Visual"):
     assert label in sheet, label
 assert settings["vimFirst.cheatsheetPath"] == str(user / "vim-first-cheatsheet.md")
 extensions = sorted((Path.home() / ".cursor" / "extensions").glob("lingfeng-local.vim-first-cheatsheet-*/package.json"))
